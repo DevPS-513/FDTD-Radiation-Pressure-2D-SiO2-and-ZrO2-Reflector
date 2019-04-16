@@ -7,7 +7,7 @@ clc
 % right now solves for each model in serial, should probably change that to
 % parallel
 
-addpath EM_functions        % folder with sub-functions
+addpath TM_EM_functions        % folder with sub-functions
 addpath material_data       % folder with material data
 addpath position_functions
 addpath .\Global_Functions
@@ -22,7 +22,7 @@ mkdir('.\exported_png');
 % Define Models
 %models=[ 'AB ';'MN ';'AMP';'EL ';'Chu'];
 
-models=[ 'AMP'];
+models=[ 'MN '];
 
 %models=[ 'AB ';'AMP';'EL '];
 
@@ -35,8 +35,8 @@ models = cellstr(models);
 
 % Define sim case, where geometry will change
 sim_case='grating';             
-save_mode=1;                                % Turn on/off saveing the whole work space
-write_data=1;                               % Turn on/off writing to text fiels
+save_mode=0;                                % Turn on/off saveing the whole work space
+write_data=0;                               % Turn on/off writing to text fiels
 
 file_prefix='TM_prelim';
 
@@ -140,7 +140,7 @@ for sim_j=1:length(models)
 %     dx=LAMBDA/10/3;                       % x-step size
 %     dy=LAMBDA/10/3;                       % y-step size
 %     
-    dx=7*nm;                                % x-step size
+    dx=17*nm;                                % x-step size
     dy=dx;                                  % y-step size
     
 % Temporal
@@ -981,10 +981,9 @@ if (strcmp(model,'AB'))
 
     G_y_n_prev=G_y;
     G_y(i,j)=-1*eps_o*mu_o.*(Ex(i,j).*Hz_at_x(i,j));                  % 
-    %[Ty,t1,t2,t3,t4 ] = Calculate_Ty_AB( i,j,Ex,Ey,Dx,Dy,Hz,Hz_n_prev,Bz,Bz_n_prev,dx,dy );
+  
     
-    
-    [Ty,t1,t2,t3,t4 ] = Calculate_Ty_MN_v2( i,j,Ex,Ex_n_prev,Ey,Ey_n_prev,Dx,Dx_n_prev,...
+    [Ty,t1,t2,t3,t4 ] = Calculate_Ty_AB( i,j,Ex,Ex_n_prev,Ey,Ey_n_prev,Dx,Dx_n_prev,...
 		Dy,Dy_n_prev,Hz,Hz_n_prev,Bz,Bz_n_prev,dx,dy );
     
 end
