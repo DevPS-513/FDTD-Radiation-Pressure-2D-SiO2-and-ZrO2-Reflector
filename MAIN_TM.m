@@ -46,7 +46,7 @@ for sim_j=1:length(models)
     keep file_prefix models sim_j save_mode sim_case index_n N_run y_disp write_data fx_peak_models fy_peak_models      % clear everything except which model to use.
 
     clf                     % Clear models inbetween simulations
-    plot_on=0;              % turn plotting on or off
+    plot_on=1;              % turn plotting on or off
     dispersion_on=0;
     model=models(sim_j);    % Define the current model
     model_name=char(model); % store as charecter array for string writing
@@ -153,7 +153,7 @@ for sim_j=1:length(models)
     sim_time=(sim_cycles*(1/f));        % total simtime in (s) 
     Nt=round(sim_time/dt);              % number of time steps
 
-    fig_refresh=T*5;                    % 10 figures per cycle
+    fig_refresh=T;                    % 10 figures per cycle
     
     fig_count=round(fig_refresh/dt);    % time steps per plot
     n_count=0;                          % Plot Counter
@@ -919,7 +919,7 @@ if (strcmp(model,'MN'))
     % will put tY
 [Tx ] = Calculate_Tx_MN( i,j,Ex,Ey,Dx,Dy,Hz,Hz_n_prev,Bz,Bz_n_prev,dx,dy );
    % [Ty ] = Calculate_Ty_MN( i,j,Ex,Ey,Dx,Dy,Hz,Hz_n_prev,Bz,Bz_n_prev,dx,dy );
-[Ty,t1,t2,t3,t4 ] = Calculate_Ty_MN_v3( i,j,Ex,Ex_n_prev,Ey,Ey_n_prev,Dx,Dx_n_prev,...
+[Ty,t1,t2,t3,t4 ] = Calculate_Ty_MN( i,j,Ex,Ex_n_prev,Ey,Ey_n_prev,Dx,Dx_n_prev,...
 		Dy,Dy_n_prev,Hz,Hz_n_prev,Bz,Bz_n_prev,dx,dy );
 
     
